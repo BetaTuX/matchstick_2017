@@ -1,0 +1,70 @@
+/*
+** EPITECH PROJECT, 2017
+** matchstick
+** File description:
+** player controller
+*/
+
+#include <stdlib.h>
+#include "my.h"
+#include "my_printf.h"
+#include "matchstick.h"
+
+static int get_line_ind(int line)
+{
+	AUTO_FREE char *str = NULL;
+	int nb = 0;
+
+	while (1) {
+		my_putstr("Line: ");
+		free(str);
+		str = get_next_line(0);
+		if (!str)
+			break;
+		nb = my_getnbr(str);
+		if (!my_str_isnum(str))
+			my_puterr("Error: invalid input \
+(positive number expected)\n");
+		else if (0 < nb && nb <= line)
+			return (nb - 1);
+		else
+			my_puterr("Error: this line is out of range\n");
+	}
+	return (-1);
+}
+
+static int get_match_taken(int line_content, int max_taken)
+{
+	AUTO_FREE char *str = NULL;
+	int nb = 0;
+
+	my_putstr("Matches: ");
+	free(str);
+	str = get_next_line(0);
+	if (!str)
+		return (-1);
+	nb = my_getnbr(str);
+	if (0 < nb && nb <= max_taken && nb <= line_content)
+		return (nb);
+	return (-1);
+}
+
+int player_turn(int *map, int line, int max_taken)
+{
+	int line_ind = 0;
+	int matches_taken = 0;
+
+	my_putstr("Your turn:\n");
+	while (1) {
+		line_ind = get_line_ind(line);
+		if (line_ind == -1)
+			return (-1);
+		matches_taken = get_match_taken(map[line_ind], max_taken);
+		if (matches_taken != -1)
+			break;
+	}
+	map[line_ind] -= matches_taken;
+	my_printf("Player removed %d match(es) from line %d\n", matches_taken, \
+line_ind + 1);
+	return (0);
+}
