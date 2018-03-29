@@ -13,3 +13,4 @@ const char *ERR_INV_INP = "Error: invalid input (positive number expected)\n";
 const char *ERR_LINE_OOR = "Error: this line is out of range\n";
 const char *END_WIN_MSG = "I lost... snif... but I'll get you next time!!\n";
 const char *END_LOSE_MSG = "You lost, too bad...\n";
+const char *USAGE = "USAGE : ./matchstick line_nb max_matches_per_turn\n";

@@ -14,4 +14,5 @@
 	extern const char *ERR_LINE_OOR;
 	extern const char *END_WIN_MSG;
 	extern const char *END_LOSE_MSG;
+	extern const char *USAGE;
 #endif /* !GLOBAL_H_ */

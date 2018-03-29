@@ -54,6 +54,12 @@ static int matchstick_loop(int *map, int line, int max_taken)
 	return (0);
 }
 
+static int print_usage(void)
+{
+	my_putstr(USAGE);
+	return(84);
+}
+
 int main(int argc, char **argv)
 {
 	AUTO_FREE int *map = NULL;
@@ -61,12 +67,12 @@ int main(int argc, char **argv)
 	int max_match = 0;
 
 	srandom(time(NULL));
-	if (argc != 3)
-		return (84);
+	if (argc < 3)
+		return (print_usage());
 	line = my_getnbr(argv[1]);
 	max_match = my_getnbr(argv[2]);
 	if (max_match <= 0 || line <= 0 || 100 <= line)
-		return (84);
+		return (print_usage());
 	map = create_map(line);
 	if (!map)
 		return (84);
