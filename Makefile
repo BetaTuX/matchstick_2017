@@ -13,6 +13,7 @@ SRC	=	main.c \
 		display_map.c \
 		player.c \
 		ai.c \
+		global.c \
 
 OBJ	=	$(SRC:%.c=$(SRC_DIR)%.o)
 

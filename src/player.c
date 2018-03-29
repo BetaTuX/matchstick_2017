@@ -9,6 +9,7 @@
 #include "my.h"
 #include "my_printf.h"
 #include "matchstick.h"
+#include "global.h"
 
 static int get_line_ind(int line)
 {
@@ -23,12 +24,11 @@ static int get_line_ind(int line)
 			break;
 		nb = my_getnbr(str);
 		if (!my_str_isnum(str))
-			my_puterr("Error: invalid input \
-(positive number expected)\n");
+			my_puterr(ERR_INV_INP);
 		else if (0 < nb && nb <= line)
 			return (nb - 1);
 		else
-			my_puterr("Error: this line is out of range\n");
+			my_puterr(ERR_LINE_OOR);
 	}
 	return (-1);
 }
@@ -44,9 +44,14 @@ static int get_match_taken(int line_content, int max_taken)
 	if (!str)
 		return (-1);
 	nb = my_getnbr(str);
-	if (0 < nb && nb <= max_taken && nb <= line_content)
-		return (nb);
-	return (-1);
+	if (nb <= 0) {
+		my_puterr(ERR_NE_MATCHES);
+		return (-1);
+	} else if (max_taken < nb || line_content < nb) {
+		my_puterr(ERR_TM_MATCHES);
+		return (-1);
+	}
+	return (nb);
 }
 
 int player_turn(int *map, int line, int max_taken)

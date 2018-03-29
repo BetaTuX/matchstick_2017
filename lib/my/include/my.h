@@ -28,7 +28,7 @@ int my_is_prime(int nb);
 int my_isneg(int n);
 int my_power(int nb, int p);
 int my_putchar(char c);
-int my_puterr(char *s);
+int my_puterr(const char *s);
 int my_putnbr_base(int nb, char const *base);
 int my_putunbr_base(unsigned int nb, char const *base);
 int my_putnbr(int nb);

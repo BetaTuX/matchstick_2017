@@ -8,7 +8,7 @@
 #include "my.h"
 #include <unistd.h>
 
-int my_puterr(char *s)
+int my_puterr(const char *s)
 {
 	write(2, s, my_strlen(s));
 	return (my_strlen(s));
