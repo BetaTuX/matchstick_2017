@@ -10,6 +10,7 @@
 #include <time.h>
 #include "my.h"
 #include "matchstick.h"
+#include "global.h"
 
 static bool check_end(int *map, int size)
 {
@@ -37,13 +38,17 @@ static int matchstick_loop(int *map, int line, int max_taken)
 {
 	while (1) {
 		display_map(map, line);
-		if (check_end(map, line))
+		if (check_end(map, line)) {
+			my_putstr(END_WIN_MSG);
 			return (1);
+		}
 		if (player_turn(map, line, max_taken) == -1)
 			break;
 		display_map(map, line);
-		if (check_end(map, line))
+		if (check_end(map, line)) {
+			my_putstr(END_LOSE_MSG);
 			return (2);
+		}
 		ai_turn(map, line, max_taken);
 	}
 	return (0);

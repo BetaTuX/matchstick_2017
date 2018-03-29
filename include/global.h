@@ -12,4 +12,6 @@
 	extern const char *ERR_TM_MATCHES;
 	extern const char *ERR_INV_INP;
 	extern const char *ERR_LINE_OOR;
+	extern const char *END_WIN_MSG;
+	extern const char *END_LOSE_MSG;
 #endif /* !GLOBAL_H_ */
