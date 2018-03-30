@@ -57,7 +57,7 @@ static int matchstick_loop(int *map, int line, int max_taken)
 static int print_usage(void)
 {
 	my_putstr(USAGE);
-	return(84);
+	return (84);
 }
 
 int main(int argc, char **argv)

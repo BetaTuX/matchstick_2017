@@ -33,6 +33,7 @@ i < (process_width(size) - process_width(line_ind)) / 2; i++)
 void display_map(int *map, int size)
 {
 	int length = process_width(size);
+
 	for (int i = 0; i < length; i++)
 		my_putchar('*');
 	my_putchar('\n');
