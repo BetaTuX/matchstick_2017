@@ -44,5 +44,5 @@ void display_map(int *map, int size)
 	}
 	for (int i = 0; i < length; i++)
 		my_putchar('*');
-	my_putchar('\n');
+	my_putstr("\n\n");
 }
