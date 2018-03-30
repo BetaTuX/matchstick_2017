@@ -24,11 +24,11 @@ static int get_line_ind(int line)
 			break;
 		nb = my_getnbr(str);
 		if (!my_str_isnum(str))
-			my_puterr(ERR_INV_INP);
+			my_putstr(ERR_INV_INP);
 		else if (0 < nb && nb <= line)
 			return (nb - 1);
 		else
-			my_puterr(ERR_LINE_OOR);
+			my_putstr(ERR_LINE_OOR);
 	}
 	return (-1);
 }
@@ -45,10 +45,10 @@ static int get_match_taken(int line_content, int max_taken)
 		return (-1);
 	nb = my_getnbr(str);
 	if (nb <= 0) {
-		my_puterr(ERR_NE_MATCHES);
+		my_putstr(ERR_NE_MATCHES);
 		return (-1);
 	} else if (max_taken < nb || line_content < nb) {
-		my_puterr(ERR_TM_MATCHES);
+		my_putstr(ERR_TM_MATCHES);
 		return (-1);
 	}
 	return (nb);
