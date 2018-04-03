@@ -1,0 +1,13 @@
+<ressources>
+	<tex name="texture_name" src="assets/tex/texture.png"/>
+	<font name="minecraft" src="assets/font/Minecraft.ttf"/>
+	<music name="main_theme" src="assets/sounds/bg_theme.ogg"/>
+</ressources>
+<scene name="main_menu" gamemode="menu" ui="menu">
+	<actor name="button1" class="button" x="10" y="50"/>
+	<actor name="button2" class="button" x="30" y="50"/>
+</scene>
+<scene name="level1" gamemode="game" ui="game">
+	<actor name="player" class="player" x="10" y="50"/>
+	<actor name="crate" class="static_prop" x="30" y="50"/>
+</scene>
