@@ -14,10 +14,11 @@ DICT_RET(fetch_turn, e_turn_t);
 static int play_validate(scene_t *parent_scene)
 {
 	e_turn_t *turn = fetch_turn(parent_scene->gamemode->var, "turn");
+	int stick_selected_nb = count_selected_stick(parent_scene);
 
 	if (HAS_FAILED(turn))
 		return (1);
-	if (count_selected_stick(parent_scene) == 0)
+	if (stick_selected_nb <= 0 || 3 < stick_selected_nb)
 		return (0);
 	my_delete_nodes(&(parent_scene->actors), NULL, &stick_selected);
 	*turn = E_AI;
