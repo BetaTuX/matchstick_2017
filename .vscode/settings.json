@@ -3,6 +3,10 @@
 		"array": "cpp",
 		"initializer_list": "cpp",
 		"string_view": "cpp",
-		"my.h": "c"
+		"my.h": "c",
+		"criterion.h": "c",
+		"assert.h": "c",
+		"redirect.h": "c",
+		"common.h": "c"
 	}
 }

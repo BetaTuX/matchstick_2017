@@ -10,7 +10,7 @@
 #include "my_printf.h"
 #include "matchstick.h"
 
-static void process_selection(int *map, int line_nb, int max_taken, \
+void process_selection(int *map, int line_nb, int max_taken, \
 vector2i_t *vec)
 {
 	int nim = 0;
