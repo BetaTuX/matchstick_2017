@@ -13,16 +13,14 @@
 static void process_selection(int *map, int line_nb, int max_taken, \
 vector2i_t *vec)
 {
+	int nim = 0;
+
+	for (int i = line_nb - 1; 0 <= i; i--)
+		nim = nim ^ map[i];
+	if (nim == 0 || max_taken < nim)
+		nim = 1;
 	for (int i = line_nb - 1; 0 <= i; i--) {
-		for (int j = my_even(max_taken); 0 < j; j -= 2) {
-			if (j <= map[i]) {
-				*vec = (vector2i_t){i, j};
-				return;
-			}
-		}
-	}
-	for (int i = line_nb - 1; 0 <= i; i--) {
-		if (0 < map[i]) {
+		if (nim <= map[i]) {
 			*vec = (vector2i_t){i, 1};
 			return;
 		}
