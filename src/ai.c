@@ -21,9 +21,13 @@ vector2i_t *vec)
 		nim = 1;
 	for (int i = line_nb - 1; 0 <= i; i--) {
 		if (nim <= map[i]) {
-			*vec = (vector2i_t){i, 1};
+			*vec = (vector2i_t){i, nim};
 			return;
 		}
+	}
+	for (int i = 0; i < line_nb; i++) {
+		if (vec->y <= map[i])
+			*vec = (vector2i_t){i, my_min(map[i], max_taken)};
 	}
 }
 

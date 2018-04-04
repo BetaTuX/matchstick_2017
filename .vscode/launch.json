@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "matchstick",
-			"args": [2, 2],
+			"args": ["3", "3"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

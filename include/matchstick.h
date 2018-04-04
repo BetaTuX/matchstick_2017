@@ -23,4 +23,12 @@ vector2i_t *vec);
 	{
 		return (nb - (nb % 2));
 	}
+
+	static inline int my_min(int v1, int v2)
+	{
+		if (v1 < v2)
+			return (v1);
+		else
+			return (v2);
+	}
 #endif
