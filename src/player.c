@@ -53,7 +53,7 @@ static int get_match_taken(int line_content, int max_taken)
 	free(str);
 	str = get_next_line(0);
 	if (!str)
-		return (-1);
+		return (-2);
 	if (check_input(str))
 		return (-1);
 	nb = my_getnbr(str);
@@ -75,11 +75,13 @@ int player_turn(int *map, int line, int max_taken)
 	my_putstr("Your turn:\n");
 	while (1) {
 		line_ind = get_line_ind(line);
-		if (line_ind == -1)
-			return (-1);
+		if (line_ind < 0)
+			return (line_ind);
 		matches_taken = get_match_taken(map[line_ind], max_taken);
-		if (matches_taken != -1)
+		if (0 <= matches_taken)
 			break;
+		else if (matches_taken == -2)
+			return (-1);
 	}
 	map[line_ind] -= matches_taken;
 	my_printf("Player removed %d match(es) from line %d\n", matches_taken, \
