@@ -5,30 +5,38 @@
 ** ai controller
 */
 
-#include <stdbool.h>
 #include <stdlib.h>
 #include "my.h"
 #include "my_printf.h"
+#include "matchstick.h"
 
-static bool valid_remove(int *map, int line_sel, int match_nb)
+static void process_selection(int *map, int line_nb, int max_taken, \
+vector2i_t *vec)
 {
-	if (line_sel != -1 && 0 < match_nb && match_nb <= map[line_sel])
-		return (true);
-	return (false);
+	for (int i = line_nb - 1; 0 <= i; i--) {
+		for (int j = my_even(max_taken); 0 < j; j -= 2) {
+			if (j <= map[i]) {
+				*vec = (vector2i_t){i, j};
+				return;
+			}
+		}
+	}
+	for (int i = line_nb - 1; 0 <= i; i--) {
+		if (0 < map[i]) {
+			*vec = (vector2i_t){i, 1};
+			return;
+		}
+	}
 }
 
 void ai_turn(int *map, int line, int max_taken)
 {
-	int line_sel = -1;
-	int match_nb = -1;
+	vector2i_t vec = {-1, -1};
 
 	my_putstr("AI's turn...\n");
-	while (!valid_remove(map, line_sel, match_nb)) {
-		line_sel = ABS(random()) % line;
-		match_nb = ABS(random() % max_taken) + 1;
-	}
-	my_printf("AI removed %d match(es) from line %d\n", match_nb, \
-line_sel + 1);
-	map[line_sel] -= match_nb;
+	process_selection(map, line, max_taken, &vec);
+	my_printf("AI removed %d match(es) from line %d\n", vec.y, \
+vec.x + 1);
+	map[vec.x] -= vec.y;
 	return;
 }
