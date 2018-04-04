@@ -33,6 +33,17 @@ static int get_line_ind(int line)
 	return (-1);
 }
 
+static int check_input(char *str)
+{
+	for (int i = 0; str[i]; i++) {
+		if (!('0' <= str[i] && str[i] <= '9')) {
+			my_putstr(ERR_INV_INP);
+			return (1);
+		}
+	}
+	return (0);
+}
+
 static int get_match_taken(int line_content, int max_taken)
 {
 	AUTO_FREE char *str = NULL;
@@ -42,6 +53,8 @@ static int get_match_taken(int line_content, int max_taken)
 	free(str);
 	str = get_next_line(0);
 	if (!str)
+		return (-1);
+	if (check_input(str))
 		return (-1);
 	nb = my_getnbr(str);
 	if (nb <= 0) {
