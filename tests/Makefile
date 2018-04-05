@@ -8,6 +8,8 @@
 SRC_DIR		=	$(realpath ../src)
 
 SRC_FILES	=	ai.c \
+			ai_utils.c \
+			ai_calculation.c \
 			display_map.c \
 			global.c \
 			player.c \
@@ -17,6 +19,7 @@ SRC		=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
 TESTS_DIR	=	$(realpath ./src)
 
 TESTS_FILES	=	tests_ai.c \
+			tests_ai_utils.c \
 
 SRC_TESTS	=	$(addprefix $(TESTS_DIR)/, $(TESTS_FILES))
 

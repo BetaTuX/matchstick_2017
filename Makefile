@@ -25,6 +25,8 @@ LIBDIR	=	lib/my
 
 LIBS	=	-L $(LIBDIR) -lmy
 
+UT_DIR	=	tests/
+
 CC	=	gcc
 
 all:	$(NAME)
@@ -46,5 +48,12 @@ re:	fclean all
 debug:	CFLAGS += -O0 -s -g
 debug:	re
 
-bonus:	$(MAKE) re -C $(BONUS)
-bonus:	clean
+tests_run:	all
+	$(MAKE) -C $(UT_DIR)
+	$(UT_DIR)test
+
+tests_clean:
+	$(MAKE) clean -C $(UT_DIR)
+
+tests_fclean:
+	$(MAKE) fclean -C $(UT_DIR)
