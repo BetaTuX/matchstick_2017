@@ -13,22 +13,26 @@
 void process_selection(int *map, int line_nb, int max_taken, \
 vector2i_t *vec)
 {
-	int nim = 0;
+	int moves_left = count_move_left(map, line_nb);
+	int index_maxline = get_index_maxline(map, line_nb);
+	int nim_sum = 0;
 
-	for (int i = line_nb - 1; 0 <= i; i--)
-		nim = nim ^ map[i];
-	if (nim == 0 || max_taken < nim)
-		nim = 1;
-	for (int i = line_nb - 1; 0 <= i; i--) {
-		if (nim <= map[i]) {
-			*vec = (vector2i_t){i, nim};
+	if (is_end_game(map, line_nb)) {
+		if (map[index_maxline] == 1 && (moves_left % 2) == 1)
+			*vec = (vector2i_t){index_maxline, 1};
+		else
+			*vec = (vector2i_t){index_maxline, (map[index_maxline] \
+- (moves_left % 2)) % max_taken};
+		return;
+	}
+	for (int i = 0; i < line_nb; i++)
+		nim_sum = nim_sum ^ map[i];
+	for (int i = 0; i < line_nb; i++)
+		if ((map[i] ^ (nim_sum != 0) ? nim_sum : 1) < map[i]) {
+			*vec = (vector2i_t){i, (map[i] - (map[i] ^ nim_sum)) % \
+max_taken};
 			return;
 		}
-	}
-	for (int i = 0; i < line_nb; i++) {
-		if (vec->y <= map[i])
-			*vec = (vector2i_t){i, my_min(map[i], max_taken)};
-	}
 }
 
 void ai_turn(int *map, int line, int max_taken)

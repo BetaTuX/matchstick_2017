@@ -8,6 +8,8 @@
 #ifndef MATCHSTICK_H_
 	#define MATCHSTICK_H_
 
+	#include <stdbool.h>
+
 	typedef struct {
 		int x;
 		int y;
@@ -18,6 +20,9 @@
 	void ai_turn(int *map, int line, int max_taken);
 	void process_selection(int *map, int line_nb, int max_taken, \
 vector2i_t *vec);
+	bool is_end_game(int *map, int map_size);
+	int count_move_left(int *map, int map_size);
+	int get_index_maxline(int *map, int map_size);
 
 	static inline int my_even(int nb)
 	{
