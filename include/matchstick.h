@@ -23,6 +23,7 @@ vector2i_t *vec);
 	bool is_end_game(int *map, int map_size);
 	int count_move_left(int *map, int map_size);
 	int get_index_maxline(int *map, int map_size);
+	int sum_nim(int *map, int map_size);
 
 	static inline int my_even(int nb)
 	{

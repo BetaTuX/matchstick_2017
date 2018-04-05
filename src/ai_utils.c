@@ -36,3 +36,12 @@ int get_index_maxline(int *map, int map_size)
 			tot = i;
 	return (tot);
 }
+
+int sum_nim(int *map, int map_size)
+{
+	int tot = 0;
+
+	for (int i = 0; i < map_size; i++)
+		tot = tot ^ map[i];
+	return (tot);
+}

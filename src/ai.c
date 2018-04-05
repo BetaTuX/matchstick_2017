@@ -15,20 +15,19 @@ vector2i_t *vec)
 {
 	int moves_left = count_move_left(map, line_nb);
 	int index_maxline = get_index_maxline(map, line_nb);
-	int nim_sum = 0;
+	int nim_sum = sum_nim(map, line_nb);
 
+	*vec = (vector2i_t){index_maxline, 1};
 	if (is_end_game(map, line_nb)) {
-		if (map[index_maxline] == 1 && (moves_left % 2) == 1)
-			*vec = (vector2i_t){index_maxline, 1};
-		else
-			*vec = (vector2i_t){index_maxline, (map[index_maxline] \
-- (moves_left % 2)) % max_taken};
+		if (!(map[index_maxline] == 1 && (moves_left % 2) == 1))
+			vec->y = (map[index_maxline] - (moves_left % 2)) \
+% max_taken;
 		return;
 	}
+	if (nim_sum == 0)
+		return;
 	for (int i = 0; i < line_nb; i++)
-		nim_sum = nim_sum ^ map[i];
-	for (int i = 0; i < line_nb; i++)
-		if ((map[i] ^ (nim_sum != 0) ? nim_sum : 1) < map[i]) {
+		if ((map[i] ^ nim_sum) < map[i]) {
 			*vec = (vector2i_t){i, (map[i] - (map[i] ^ nim_sum)) % \
 max_taken};
 			return;
