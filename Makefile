@@ -14,6 +14,7 @@ SRC	=	main.c \
 		player.c \
 		ai.c \
 		ai_utils.c \
+		ai_calculation.c \
 		global.c \
 
 OBJ	=	$(SRC:%.c=$(SRC_DIR)%.o)

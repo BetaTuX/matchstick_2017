@@ -28,8 +28,8 @@ moves_left, max_taken);
 		return;
 	for (int i = 0; i < line_nb; i++)
 		if ((map[i] ^ nim_sum) < map[i]) {
-			*vec = (vector2i_t){i, ((map[i] - (map[i] ^ nim_sum)) %\
-(max_taken + 1))};
+			vec->x = i;
+			vec->y = calculate_move(map[i], nim_sum, max_taken);
 			return;
 		}
 }

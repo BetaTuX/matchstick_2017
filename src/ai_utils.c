@@ -45,13 +45,3 @@ int sum_nim(int *map, int map_size)
 		tot = tot ^ map[i];
 	return (tot);
 }
-
-int calculate_last_move(int max_stick, int moves_left, int max_taken)
-{
-	int result = ((max_stick - (moves_left % 2)) % (max_taken + 1));
-
-	if (result)
-		return (result);
-	else
-		return (1);
-}
