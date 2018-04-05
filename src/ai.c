@@ -20,8 +20,8 @@ vector2i_t *vec)
 	*vec = (vector2i_t){index_maxline, 1};
 	if (is_end_game(map, line_nb)) {
 		if (!(map[index_maxline] == 1 && (moves_left % 2) == 1))
-			vec->y = ((map[index_maxline] - (moves_left % 2)) \
-% (max_taken + 1));
+			vec->y = calculate_last_move(map[index_maxline], \
+moves_left, max_taken);
 		return;
 	}
 	if (nim_sum == 0)

@@ -24,6 +24,7 @@ vector2i_t *vec);
 	int count_move_left(int *map, int map_size);
 	int get_index_maxline(int *map, int map_size);
 	int sum_nim(int *map, int map_size);
+	int calculate_last_move(int max_stick, int moves_left, int max_taken);
 
 	static inline int my_even(int nb)
 	{
